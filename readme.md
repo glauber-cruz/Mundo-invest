@@ -37,7 +37,7 @@ pip install -r requirements.txt
 ### 4. Execute a aplicação
 
 ```bash
-uvicorn src.main:app --reload
+uvicorn main:app --reload
 ```
 
 A aplicação ficará disponível em:
