@@ -1,7 +1,11 @@
 from fastapi import APIRouter
+from src.presentation.schemas.clients_schema import CreateClientSchema
 
-router = APIRouter()
+router = APIRouter(
+    prefix="/clients",
+    tags=["clients"]
+)
 
-@router.post("/clients")
-def create_client():
+@router.post("/")
+def create_client(payload: CreateClientSchema):
     return {"message": "Client created"}
