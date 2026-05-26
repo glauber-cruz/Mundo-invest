@@ -22,8 +22,6 @@ http://localhost:8000/docs
 
 # Instalação Local
 
-Clone o repositório e acesse a pasta do projeto.
-
 ## 1. Crie o ambiente virtual
 
 ```bash
