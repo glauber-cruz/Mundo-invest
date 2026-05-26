@@ -1,12 +1,14 @@
 import uuid
 
-from sqlalchemy import Numeric
+from sqlalchemy import Numeric, DateTime
 from sqlalchemy import String
 
 from sqlalchemy.orm import Mapped
 from sqlalchemy.orm import mapped_column
 
 from src.infra.database.database import Base
+from datetime import datetime
+
 from src.domain.enums.client_enum import ClientStatus, ClientPriority
 from sqlalchemy.types import Enum as SqlEnum
 
@@ -16,7 +18,7 @@ class ClientModel(Base):
     id: Mapped[str] = mapped_column(
         String,
         primary_key=True,
-        default=lambda: str(uuid.uuid4())
+        default=uuid.uuid4
     )
 
     cliente_nome: Mapped[str] = mapped_column(
@@ -49,4 +51,17 @@ class ClientModel(Base):
     prioridade: Mapped[ClientPriority | None] = mapped_column(
         SqlEnum(ClientPriority),
         nullable=True
+    )
+
+    created_at: Mapped[datetime] = mapped_column(
+      DateTime,
+      nullable=False,
+      default=datetime.utcnow
+    )
+
+    updated_at: Mapped[datetime] = mapped_column(
+        DateTime,
+        nullable=False,
+        default=datetime.utcnow,
+        onupdate=datetime.utcnow
     )
