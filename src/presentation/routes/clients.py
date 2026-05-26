@@ -31,3 +31,4 @@ def create_client(
     )
 
     use_case.execute(payload_dto)
+    return {"message": "Client created successfully"}
