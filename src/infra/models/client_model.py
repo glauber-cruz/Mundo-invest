@@ -1,16 +1,12 @@
 import uuid
 
-from sqlalchemy import Numeric, DateTime
-from sqlalchemy import String
-
-from sqlalchemy.orm import Mapped
-from sqlalchemy.orm import mapped_column
+from sqlalchemy import Numeric, DateTime, String
+from sqlalchemy.orm import Mapped, mapped_column
 
 from src.infra.database.database import Base
 from datetime import datetime
 
-from src.domain.enums.client_enum import ClientStatus, ClientPriority
-from sqlalchemy.types import Enum as SqlEnum
+from src.domain.enums.client_enum import ClientStatus
 
 class ClientModel(Base):
     __tablename__ = "clients"
@@ -18,7 +14,7 @@ class ClientModel(Base):
     id: Mapped[str] = mapped_column(
         String,
         primary_key=True,
-        default=uuid.uuid4
+        default=lambda: str(uuid.uuid4())
     )
 
     cliente_nome: Mapped[str] = mapped_column(
@@ -42,14 +38,14 @@ class ClientModel(Base):
         nullable=False
     )
 
-    status: Mapped[ClientStatus] = mapped_column(
-        SqlEnum(ClientStatus),
+    status: Mapped[str] = mapped_column(
+        String(50),
         nullable=False,
-        default=ClientStatus.WAITING_ANALYSIS
+        default=ClientStatus.WAITING_ANALYSIS.value
     )
 
-    prioridade: Mapped[ClientPriority | None] = mapped_column(
-        SqlEnum(ClientPriority),
+    prioridade: Mapped[str | None] = mapped_column(
+        String(50),
         nullable=True
     )
 
