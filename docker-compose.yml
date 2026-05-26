@@ -4,7 +4,9 @@ services:
       context: .
       dockerfile: Dockerfile
     container_name: mundo-invest-app
-    command: uvicorn main:app --host 0.0.0.0 --port 8000 --reload
+    command: >
+      sh -c "alembic upgrade head &&
+             uvicorn main:app --host 0.0.0.0 --port 8000 --reload"
     ports:
       - "8000:8000"
     volumes:
