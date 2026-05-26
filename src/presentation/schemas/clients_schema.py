@@ -17,7 +17,9 @@ class CreateClientSchema(BaseModel):
       example="Solicitação de crédito"
     )
     valor_patrimonio: float = Field(
-      gt=0,
+      ge=0,
+      max_digits=12,
+      decimal_places=2,
       description="Valor do patrimônio do cliente",
       example=100000.00,
     )
