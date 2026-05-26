@@ -10,16 +10,16 @@ services:
     volumes:
       - .:/app
     environment:
-      DATABASE_URL: postgresql+psycopg2://admin:admin123@db:5432/mundo-invest-db
+      DATABASE_URL: postgresql+psycopg2://admin:admin123@db:5432/mundo_invest_db
     depends_on:
       db:
         condition: service_healthy
 
   db:
     image: postgres:16-alpine
-    container_name: mundo-invest-db
+    container_name: mundo_invest_db
     environment:
-      POSTGRES_DB: mundo-invest-db
+      POSTGRES_DB: mundo_invest_db
       POSTGRES_USER: admin
       POSTGRES_PASSWORD: admin123
     ports:
@@ -27,9 +27,10 @@ services:
     volumes:
       - postgres_data:/var/lib/postgresql/data
     healthcheck:
-      interval: 10s
+      test: ["CMD-SHELL", "pg_isready -U admin -d mundo_invest_db"]
+      interval: 5s
       timeout: 5s
-      retries: 5
+      retries: 10
 
 volumes:
   postgres_data:
