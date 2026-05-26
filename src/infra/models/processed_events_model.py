@@ -21,7 +21,6 @@ class ProcessedEventModel(Base):
         String(120),
         unique=True,
         nullable=False,
-        index=True
     )
 
     card_id: Mapped[str] = mapped_column(
