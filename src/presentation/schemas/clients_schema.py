@@ -10,6 +10,7 @@ class CreateClientSchema(BaseModel):
     )
     cliente_email: EmailStr = Field(
       description="Email do cliente",
+      max_length=120,
       example="cliente@gmail.com"
     )
     tipo_solicitacao: str = Field(
