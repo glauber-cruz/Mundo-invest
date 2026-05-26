@@ -1,7 +1,7 @@
 import uuid
 from datetime import datetime
 
-from sqlalchemy import String, DateTime
+from sqlalchemy import String, DateTime, func
 from sqlalchemy.orm import Mapped, mapped_column
 
 from src.infra.database.database import Base
@@ -14,7 +14,7 @@ class ProcessedEventModel(Base):
     id: Mapped[str] = mapped_column(
         String,
         primary_key=True,
-        default=uuid.uuid4
+        default=lambda: str(uuid.uuid4())
     )
 
     event_id: Mapped[str] = mapped_column(
