@@ -15,7 +15,7 @@ class CreateClientUseCase:
     email_already_exists = self.client_repository.email_already_exists(payload.cliente_email)
 
     if email_already_exists:
-      raise HTTPException(status_code=400, detail="Email already exists")
+      raise HTTPException(status_code=409, detail="Email already exists")
 
     client_model = ClientModel(
       cliente_nome=payload.cliente_nome,
