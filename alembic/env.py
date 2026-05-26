@@ -9,6 +9,7 @@ from os import getenv
 from dotenv import load_dotenv
 
 from src.infra.models.client_model import ClientModel
+from src.infra.models.processed_events_model import ProcessedEventModel
 from src.infra.database.database import Base
 
 load_dotenv()
