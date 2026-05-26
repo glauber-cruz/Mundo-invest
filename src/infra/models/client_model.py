@@ -7,6 +7,8 @@ from sqlalchemy.orm import Mapped
 from sqlalchemy.orm import mapped_column
 
 from src.infra.database.database import Base
+from src.domain.enums.client_enum import ClientStatus, ClientPriority
+from sqlalchemy.types import Enum as SqlEnum
 
 class ClientModel(Base):
     __tablename__ = "clients"
@@ -38,12 +40,13 @@ class ClientModel(Base):
         nullable=False
     )
 
-    status: Mapped[str] = mapped_column(
-        String(50),
-        nullable=False
+    status: Mapped[ClientStatus] = mapped_column(
+        SqlEnum(ClientStatus),
+        nullable=False,
+        default=ClientStatus.WAITING_ANALYSIS
     )
 
-    prioridade: Mapped[str | None] = mapped_column(
-        String(50),
+    prioridade: Mapped[ClientPriority | None] = mapped_column(
+        SqlEnum(ClientPriority),
         nullable=True
     )
