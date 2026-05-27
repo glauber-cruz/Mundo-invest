@@ -19,6 +19,12 @@ cov-html:
 watch:
 	ptw -- -v --cov=src
 
+lint:
+	ruff check .
+
+format:
+	ruff format .
+
 docker-up:
 	docker compose up -d
 
