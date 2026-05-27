@@ -1,7 +1,7 @@
+from sqlalchemy import exists
 from sqlalchemy.orm import Session
 
 from src.infra.models.processed_events_model import ProcessedEventModel
-from sqlalchemy import exists
 
 
 class ProcessedEventsRepository:

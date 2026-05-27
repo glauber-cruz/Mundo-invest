@@ -1,10 +1,9 @@
-from src.infra.repositories.client_repo import ClientRepository
-from src.application.dtos.create_client_dto import CreateClientDTO
-
 from fastapi import HTTPException
-from src.infra.models.client_model import ClientModel
 
+from src.application.dtos.create_client_dto import CreateClientDTO
 from src.domain.enums.client_enum import ClientStatus
+from src.infra.models.client_model import ClientModel
+from src.infra.repositories.client_repo import ClientRepository
 
 
 class CreateClientUseCase:

@@ -1,12 +1,11 @@
 import uuid
-
-from sqlalchemy import Numeric, DateTime, String
-from sqlalchemy.orm import Mapped, mapped_column
-
-from src.infra.database.database import Base
 from datetime import datetime
 
+from sqlalchemy import DateTime, Numeric, String
+from sqlalchemy.orm import Mapped, mapped_column
+
 from src.domain.enums.client_enum import ClientStatus
+from src.infra.database.database import Base
 
 
 class ClientModel(Base):

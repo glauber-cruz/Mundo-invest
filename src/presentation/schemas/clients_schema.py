@@ -1,5 +1,5 @@
+
 from pydantic import BaseModel, EmailStr, Field
-from typing import Literal
 
 
 class CreateClientSchema(BaseModel):

@@ -1,6 +1,7 @@
 from dataclasses import dataclass
-from pydantic import EmailStr
 from datetime import datetime
+
+from pydantic import EmailStr
 
 
 @dataclass(frozen=True)

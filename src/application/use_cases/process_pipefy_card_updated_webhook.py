@@ -1,16 +1,10 @@
+
 from src.application.dtos.pipefy_card_update_webhook_dto import (
     PipefyCardUpdateWebhookDTO,
 )
-
-from src.infra.repositories.processed_events_repo import ProcessedEventsRepository
-from src.infra.repositories.client_repo import ClientRepository
-
-from fastapi import HTTPException
-from src.domain.enums.client_enum import ClientPriority
-
-from src.domain.enums.client_enum import ClientStatus
-from src.infra.models.processed_events_model import ProcessedEventModel
+from src.domain.enums.client_enum import ClientPriority, ClientStatus
 from src.infra.database.uow import UnitOfWork
+from src.infra.models.processed_events_model import ProcessedEventModel
 
 
 class ProcessPipefyCardUpdatedWebhookUseCase:

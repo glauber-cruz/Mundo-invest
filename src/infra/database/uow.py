@@ -1,7 +1,7 @@
+from sqlalchemy.orm import Session
+
 from src.infra.repositories.client_repo import ClientRepository
 from src.infra.repositories.processed_events_repo import ProcessedEventsRepository
-
-from sqlalchemy.orm import Session
 
 
 class UnitOfWork:

@@ -1,7 +1,7 @@
+from sqlalchemy import exists
 from sqlalchemy.orm import Session
 
 from src.infra.models.client_model import ClientModel
-from sqlalchemy import exists
 
 
 class ClientRepository:

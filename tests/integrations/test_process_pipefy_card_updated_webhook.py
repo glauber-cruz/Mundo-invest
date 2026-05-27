@@ -1,7 +1,7 @@
 from datetime import datetime
 
-from src.infra.models.client_model import ClientModel
 from src.domain.enums.client_enum import ClientPriority, ClientStatus
+from src.infra.models.client_model import ClientModel
 
 
 def test_should_process_webhook_success(client, db_session, faker):

@@ -1,12 +1,10 @@
 import uuid
 from datetime import datetime
 
-from sqlalchemy import String, DateTime, func
+from sqlalchemy import DateTime, String
 from sqlalchemy.orm import Mapped, mapped_column
 
 from src.infra.database.database import Base
-
-from datetime import datetime
 
 
 class ProcessedEventModel(Base):

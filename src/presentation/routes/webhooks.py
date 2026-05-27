@@ -1,18 +1,15 @@
-from fastapi import APIRouter
-from src.presentation.schemas.webhooks_schema import PipefyCardUpdatedSchema
+from fastapi import APIRouter, Depends
+from sqlalchemy.orm import Session
 
-from src.application.use_cases.process_pipefy_card_updated_webhook import (
-    ProcessPipefyCardUpdatedWebhookUseCase,
-)
 from src.application.dtos.pipefy_card_update_webhook_dto import (
     PipefyCardUpdateWebhookDTO,
 )
-
-from src.infra.database.uow import UnitOfWork
+from src.application.use_cases.process_pipefy_card_updated_webhook import (
+    ProcessPipefyCardUpdatedWebhookUseCase,
+)
 from src.infra.database.database import get_db
-
-from sqlalchemy.orm import Session
-from fastapi import Depends
+from src.infra.database.uow import UnitOfWork
+from src.presentation.schemas.webhooks_schema import PipefyCardUpdatedSchema
 
 router = APIRouter(prefix="/webhooks", tags=["webhooks"])
 

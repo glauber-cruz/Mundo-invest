@@ -1,15 +1,10 @@
 from logging.config import fileConfig
+from os import getenv
 
-from sqlalchemy import engine_from_config
-from sqlalchemy import pool
+from dotenv import load_dotenv
+from sqlalchemy import engine_from_config, pool
 
 from alembic import context
-
-from os import getenv
-from dotenv import load_dotenv
-
-from src.infra.models.client_model import ClientModel
-from src.infra.models.processed_events_model import ProcessedEventModel
 from src.infra.database.database import Base
 
 load_dotenv()

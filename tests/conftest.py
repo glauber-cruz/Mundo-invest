@@ -9,14 +9,12 @@ load_enviroment()
 import pytest
 from faker import Faker
 from fastapi.testclient import TestClient
-
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.pool import StaticPool
 
-from src.infra.database.database import Base, get_db
 from main import create_app
-
+from src.infra.database.database import Base, get_db
 
 SQLALCHEMY_DATABASE_URL = "sqlite:///:memory:"
 
