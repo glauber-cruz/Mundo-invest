@@ -88,9 +88,9 @@ http://localhost:8000/docs
 
 ---
 
-## Testes
+# Rodando testes
 
-### Executar testes
+## Executar testes
 
 ```bash
 make test
@@ -98,7 +98,7 @@ make test
 pytest -v
 ```
 
-### Executar testes com coverage
+## Executar testes com coverage
 
 ```bash
 make cov
@@ -106,7 +106,7 @@ make cov
 pytest -v --cov=src
 ```
 
-### Executar testes em watch mode
+## Executar testes em watch mode
 
 ```bash
 make watch
@@ -114,7 +114,7 @@ make watch
 ptw -- -v --cov=src
 ```
 
-### Gerar relatório HTML de coverage
+## Gerar relatório HTML de coverage
 
 ```bash
 make cov-html
@@ -128,7 +128,7 @@ O relatório será gerado em:
 htmlcov/index.html
 ```
 
-## Lint
+# Lint
 
 Para rodar lint basta executar
 
