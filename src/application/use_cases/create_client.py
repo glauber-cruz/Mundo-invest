@@ -6,23 +6,25 @@ from src.infra.models.client_model import ClientModel
 
 from src.domain.enums.client_enum import ClientStatus
 
-class CreateClientUseCase:
 
-  def __init__(self, client_repository: ClientRepository):
+class CreateClientUseCase:
+    def __init__(self, client_repository: ClientRepository):
         self.client_repository = client_repository
 
-  def execute(self, payload: CreateClientDTO):
-    email_already_exists = self.client_repository.email_already_exists(payload.cliente_email)
+    def execute(self, payload: CreateClientDTO):
+        email_already_exists = self.client_repository.email_already_exists(
+            payload.cliente_email
+        )
 
-    if email_already_exists:
-      raise HTTPException(status_code=409, detail="Email already exists")
+        if email_already_exists:
+            raise HTTPException(status_code=409, detail="Email already exists")
 
-    client_model = ClientModel(
-      cliente_nome=payload.cliente_nome,
-      cliente_email=payload.cliente_email,
-      tipo_solicitacao=payload.tipo_solicitacao,
-      valor_patrimonio=payload.valor_patrimonio,
-      status=ClientStatus.WAITING_ANALYSIS,
-    )
+        client_model = ClientModel(
+            cliente_nome=payload.cliente_nome,
+            cliente_email=payload.cliente_email,
+            tipo_solicitacao=payload.tipo_solicitacao,
+            valor_patrimonio=payload.valor_patrimonio,
+            status=ClientStatus.WAITING_ANALYSIS,
+        )
 
-    self.client_repository.create(client_model)
+        self.client_repository.create(client_model)

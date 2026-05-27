@@ -8,7 +8,7 @@ def test_should_create_client(client, db_session, faker):
         "cliente_nome": faker.name(),
         "cliente_email": email,
         "tipo_solicitacao": "Atualização cadastral",
-        "valor_patrimonio": 250000
+        "valor_patrimonio": 250000,
     }
 
     response = client.post("/clients/", json=payload)
@@ -16,9 +16,7 @@ def test_should_create_client(client, db_session, faker):
     assert response.status_code == 201
     assert response.json()["message"] == "Client created successfully"
 
-    db_client = db_session.query(ClientModel).filter_by(
-        cliente_email=email
-    ).first()
+    db_client = db_session.query(ClientModel).filter_by(cliente_email=email).first()
 
     assert db_client is not None
     assert db_client.cliente_nome == payload["cliente_nome"]
@@ -31,7 +29,7 @@ def test_should_fail_with_invalid_email(client, faker):
         "cliente_nome": faker.name(),
         "cliente_email": "invalid-email",
         "tipo_solicitacao": "Atualização cadastral",
-        "valor_patrimonio": 100000
+        "valor_patrimonio": 100000,
     }
 
     response = client.post("/clients/", json=payload)
@@ -46,7 +44,7 @@ def test_should_not_allow_duplicate_email(client, db_session, faker):
         "cliente_nome": faker.name(),
         "cliente_email": email,
         "tipo_solicitacao": "Atualização cadastral",
-        "valor_patrimonio": 250000
+        "valor_patrimonio": 250000,
     }
 
     client.post("/clients/", json=payload)

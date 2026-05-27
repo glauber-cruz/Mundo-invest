@@ -3,6 +3,7 @@ from src.infra.repositories.processed_events_repo import ProcessedEventsReposito
 
 from sqlalchemy.orm import Session
 
+
 class UnitOfWork:
     def __init__(self, db: Session):
         self.session = db

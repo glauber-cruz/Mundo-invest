@@ -1,7 +1,9 @@
 import os
+
 os.environ["ENV"] = "test"
 
 from src.infra.config.enviroment import load_enviroment
+
 load_enviroment()
 
 import pytest
@@ -21,14 +23,10 @@ SQLALCHEMY_DATABASE_URL = "sqlite:///:memory:"
 engine = create_engine(
     SQLALCHEMY_DATABASE_URL,
     connect_args={"check_same_thread": False},
-    poolclass=StaticPool
+    poolclass=StaticPool,
 )
 
-TestingSessionLocal = sessionmaker(
-    autocommit=False,
-    autoflush=False,
-    bind=engine
-)
+TestingSessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
 
 def override_get_db():
@@ -41,9 +39,10 @@ def override_get_db():
 
 fake = Faker()
 
+
 @pytest.fixture()
 def faker():
-  return fake
+    return fake
 
 
 @pytest.fixture(scope="function")
@@ -56,6 +55,7 @@ def client():
 
     with TestClient(app) as c:
         yield c
+
 
 @pytest.fixture()
 def db_session():

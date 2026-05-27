@@ -1,6 +1,7 @@
 from dataclasses import dataclass
 from pydantic import EmailStr
 
+
 @dataclass(frozen=True)
 class CreateClientDTO:
     cliente_nome: str
