@@ -140,7 +140,17 @@ ruff check .
 
 # Exemplos de endpoints
 
+Você pode usar os comandos em curl:
+
 ## 1. Criar cliente
+
+### Windows
+
+```bash
+curl -X POST "http://localhost:8000/clients/" -H "Content-Type: application/json" -d "{\"cliente_nome\":\"Joao da Silva\",\"cliente_email\":\"joao.silva@gmail.com\",\"tipo_solicitacao\":\"Solicitacao de credito\",\"valor_patrimonio\":100000.00}"
+```
+
+### Linux / Mac
 
 ```bash
 curl -X POST "http://localhost:8000/clients/" \
@@ -153,7 +163,15 @@ curl -X POST "http://localhost:8000/clients/" \
   }'
 ```
 
-### 2. Webhook de atualizacao de card (Pipefy)
+## 2. Webhook de atualizacao de card (Pipefy)
+
+### Windows
+
+```bash
+curl -X POST "http://localhost:8000/webhooks/pipefy/card-updated" -H "Content-Type: application/json" -d "{\"event_id\":\"evt_123\",\"card_id\":\"card_123\",\"cliente_email\":\"joao.silva@gmail.com\",\"timestamp\":\"2021-01-01T00:00:00Z\"}"
+```
+
+### Linux / Mac
 
 ```bash
 curl -X POST "http://localhost:8000/webhooks/pipefy/card-updated" \
@@ -164,4 +182,10 @@ curl -X POST "http://localhost:8000/webhooks/pipefy/card-updated" \
     "cliente_email": "joao.silva@gmail.com",
     "timestamp": "2021-01-01T00:00:00Z"
   }'
+```
+
+O sistema também possui swagger caso deseje ver as rotas com mais detalhe
+
+```bash
+http://localhost:8000/docs
 ```
