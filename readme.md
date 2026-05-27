@@ -52,7 +52,11 @@ make install
 pip install -r requirements.txt
 ```
 
-## 4. Execute as migrations
+## 4. Crie o .env
+
+Use o .example.env como base. o ENV=dev para ele ler o arquivo ".env"
+
+## 5. Execute as migrations
 
 ```bash
 make migrate
@@ -60,7 +64,7 @@ make migrate
 alembic upgrade head
 ```
 
-## 5. Inicie a aplicação
+## 6. Inicie a aplicação
 
 ```bash
 make run
