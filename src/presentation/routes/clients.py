@@ -7,7 +7,7 @@ from src.infra.database.database import get_db
 from src.infra.repositories.client_repo import ClientRepository
 from src.presentation.schemas.clients_schema import CreateClientSchema
 
-router = APIRouter(prefix="/clients", tags=["clients"])
+router = APIRouter(prefix="/clientes", tags=["clientes"])
 
 
 @router.post("/", status_code=201)

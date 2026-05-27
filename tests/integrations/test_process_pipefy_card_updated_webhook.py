@@ -4,11 +4,11 @@ from src.domain.enums.client_enum import ClientPriority, ClientStatus
 from src.infra.models.client_model import ClientModel
 
 
-def test_should_process_webhook_success(client, db_session, faker):
+def test_should_process_webhook_success(api, db_session, faker):
     email = faker.email()
 
-    client.post(
-        "/clients/",
+    api.post(
+        "/clientes/",
         json={
             "cliente_nome": faker.name(),
             "cliente_email": email,
@@ -24,17 +24,17 @@ def test_should_process_webhook_success(client, db_session, faker):
         "timestamp": datetime.utcnow().isoformat(),
     }
 
-    response = client.post("/webhooks/pipefy/card-updated", json=payload)
+    response = api.post("/webhooks/pipefy/card-updated", json=payload)
 
     assert response.status_code == 200
     assert response.json()["status"] == "success"
 
 
-def test_should_not_process_duplicate_event(client, db_session, faker):
+def test_should_not_process_duplicate_event(api, db_session, faker):
     email = faker.email()
 
-    client.post(
-        "/clients/",
+    api.post(
+        "/clientes/",
         json={
             "cliente_nome": faker.name(),
             "cliente_email": email,
@@ -50,8 +50,8 @@ def test_should_not_process_duplicate_event(client, db_session, faker):
         "timestamp": datetime.utcnow().isoformat(),
     }
 
-    response1 = client.post("/webhooks/pipefy/card-updated", json=payload)
-    response2 = client.post("/webhooks/pipefy/card-updated", json=payload)
+    response1 = api.post("/webhooks/pipefy/card-updated", json=payload)
+    response2 = api.post("/webhooks/pipefy/card-updated", json=payload)
 
     assert response1.status_code == 200
     assert response1.json()["status"] == "success"
@@ -60,7 +60,7 @@ def test_should_not_process_duplicate_event(client, db_session, faker):
     assert response2.json()["status"] == "already_processed"
 
 
-def test_should_return_client_not_found(client):
+def test_should_return_client_not_found(api):
     payload = {
         "event_id": "evt_404",
         "card_id": "card_404",
@@ -68,17 +68,17 @@ def test_should_return_client_not_found(client):
         "timestamp": datetime.utcnow().isoformat(),
     }
 
-    response = client.post("/webhooks/pipefy/card-updated", json=payload)
+    response = api.post("/webhooks/pipefy/card-updated", json=payload)
 
     assert response.status_code == 200
     assert response.json()["status"] == "client_not_found"
 
 
-def test_should_set_high_priority(client, db_session, faker):
+def test_should_set_high_priority(api, db_session, faker):
     email = faker.email()
 
-    client.post(
-        "/clients/",
+    api.post(
+        "/clientes/",
         json={
             "cliente_nome": faker.name(),
             "cliente_email": email,
@@ -94,7 +94,7 @@ def test_should_set_high_priority(client, db_session, faker):
         "timestamp": datetime.utcnow().isoformat(),
     }
 
-    client.post("/webhooks/pipefy/card-updated", json=payload)
+    api.post("/webhooks/pipefy/card-updated", json=payload)
 
     db_client = db_session.query(ClientModel).filter_by(cliente_email=email).first()
 
@@ -102,11 +102,11 @@ def test_should_set_high_priority(client, db_session, faker):
     assert db_client.status == ClientStatus.PROCESSED
 
 
-def test_should_set_normal_priority(client, db_session, faker):
+def test_should_set_normal_priority(api, db_session, faker):
     email = faker.email()
 
-    client.post(
-        "/clients/",
+    api.post(
+        "/clientes/",
         json={
             "cliente_nome": faker.name(),
             "cliente_email": email,
@@ -122,7 +122,7 @@ def test_should_set_normal_priority(client, db_session, faker):
         "timestamp": datetime.utcnow().isoformat(),
     }
 
-    client.post("/webhooks/pipefy/card-updated", json=payload)
+    api.post("/webhooks/pipefy/card-updated", json=payload)
 
     db_client = db_session.query(ClientModel).filter_by(cliente_email=email).first()
 
