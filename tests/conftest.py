@@ -1,3 +1,9 @@
+import os
+os.environ["ENV"] = "test"
+
+from src.infra.config.enviroment import load_enviroment
+load_enviroment()
+
 import pytest
 from fastapi.testclient import TestClient
 
@@ -26,7 +32,6 @@ TestingSessionLocal = sessionmaker(
 )
 
 Base.metadata.create_all(bind=engine)
-
 
 def override_get_db():
   db = TestingSessionLocal()

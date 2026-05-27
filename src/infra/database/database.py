@@ -1,14 +1,13 @@
 from os import getenv
 from sqlalchemy import create_engine
-from sqlalchemy.orm import DeclarativeBase, sessionmaker
-from dotenv import load_dotenv
 
-load_dotenv()
+from sqlalchemy.orm import DeclarativeBase, sessionmaker
 
 class Base(DeclarativeBase):
     pass
 
 DATABASE_URL = getenv("DATABASE_URL")
+print("DATABASE_URL", DATABASE_URL)
 
 if not DATABASE_URL:
     raise RuntimeError("DATABASE_URL is not set")

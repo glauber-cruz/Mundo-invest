@@ -1,6 +1,5 @@
 from src.infra.models.client_model import ClientModel
 
-
 def test_should_create_client(client):
     response = client.post(
         "/clients/",
