@@ -4,11 +4,7 @@ Suba toda a aplicação com um único comando:
 
 ```bash
 make docker-up
-```
-
-ou
-
-```bash
+# ou
 docker compose up -d
 ```
 
@@ -52,11 +48,7 @@ source venv/bin/activate
 
 ```bash
 make install
-```
-
-ou
-
-```bash
+# ou
 pip install -r requirements.txt
 ```
 
@@ -64,11 +56,7 @@ pip install -r requirements.txt
 
 ```bash
 make migrate
-```
-
-ou
-
-```bash
+# ou
 alembic upgrade head
 ```
 
@@ -76,11 +64,7 @@ alembic upgrade head
 
 ```bash
 make run
-```
-
-ou
-
-```bash
+# ou
 uvicorn main:app --reload
 ```
 
@@ -104,24 +88,32 @@ http://localhost:8000/docs
 
 ```bash
 make test
+# ou
+pytest -v
 ```
 
 ## Executar testes com coverage
 
 ```bash
 make cov
+# ou
+pytest -v --cov=src
 ```
 
 ## Executar testes em watch mode
 
 ```bash
 make watch
+# ou
+ptw -- -v --cov=src
 ```
 
 ## Gerar relatório HTML de coverage
 
 ```bash
 make cov-html
+# ou
+pytest --cov=src --cov-report=html
 ```
 
 O relatório será gerado em:
