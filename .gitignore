@@ -17,6 +17,7 @@ htmlcov/
 
 # Environment variables
 .env
+.env.prod
 
 # IDE
 .vscode/
