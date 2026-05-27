@@ -147,13 +147,13 @@ Você pode usar os comandos em curl:
 ### Windows
 
 ```bash
-curl -X POST "http://localhost:8000/clients/" -H "Content-Type: application/json" -d "{\"cliente_nome\":\"Joao da Silva\",\"cliente_email\":\"joao.silva@gmail.com\",\"tipo_solicitacao\":\"Solicitacao de credito\",\"valor_patrimonio\":100000.00}"
+curl -X POST "http://localhost:8000/clientes/" -H "Content-Type: application/json" -d "{\"cliente_nome\":\"Joao da Silva\",\"cliente_email\":\"joao.silva@gmail.com\",\"tipo_solicitacao\":\"Solicitacao de credito\",\"valor_patrimonio\":100000.00}"
 ```
 
 ### Linux / Mac
 
 ```bash
-curl -X POST "http://localhost:8000/clients/" \
+curl -X POST "http://localhost:8000/clientes/" \
   -H "Content-Type: application/json" \
   -d '{
     "cliente_nome": "Joao da Silva",
@@ -189,3 +189,11 @@ O sistema também possui swagger caso deseje ver as rotas com mais detalhe
 ```bash
 http://localhost:8000/docs
 ```
+
+# Visão de produção (AWS) ?
+
+Para mover a aplicação para prod, usaria o serviço do api gateway da aws para servir como porta de entrada da minha aplicação que deixaria sendo executada no lambda, dessa forma ela iria escalando automaticamente conforme a demanda das requests subissem ou descessem.
+
+Inclusive escolhi fastAPI justamente pensando em um cold start mais rápido para a api no lambda. Flask também seria uma alternativa okay porém, eu teria que montar quase tudo "do zero".
+
+Para a idempotência no webhook eu utilizaria o DynamoDB devido ele ser extremamente rápido e ter suporte natural a idempotência.
