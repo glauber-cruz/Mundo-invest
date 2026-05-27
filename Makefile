@@ -1,5 +1,5 @@
-install: 
-  pip install -r requirements.txt
+install:
+	pip install -r requirements.txt
 
 run:
 	uvicorn main:app --reload
@@ -17,7 +17,7 @@ cov-html:
 	pytest --cov=src --cov-report=html && start htmlcov/index.html
 
 watch:
-	ptw -- --cov=src
+	ptw -- -v --cov=src
 
 docker-up:
 	docker compose up -d
