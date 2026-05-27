@@ -1,4 +1,3 @@
-
 from src.application.dtos.pipefy_card_update_webhook_dto import (
     PipefyCardUpdateWebhookDTO,
 )

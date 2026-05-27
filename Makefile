@@ -22,8 +22,8 @@ watch:
 lint:
 	ruff check .
 
-format:
-	ruff format .
+fix:
+	ruff check . --fix && ruff format .
 
 docker-up:
 	docker compose up -d
