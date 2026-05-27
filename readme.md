@@ -125,3 +125,4 @@ O relatório será gerado em:
 ```txt
 htmlcov/index.html
 ```
+
