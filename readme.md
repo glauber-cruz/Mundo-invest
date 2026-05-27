@@ -126,3 +126,12 @@ O relatório será gerado em:
 htmlcov/index.html
 ```
 
+# Lint
+
+Para rodar lint basta executar
+
+```bash
+make lint
+#ou
+ruff check .
+```
