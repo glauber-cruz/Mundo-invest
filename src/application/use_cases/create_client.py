@@ -2,11 +2,10 @@ from fastapi import HTTPException
 
 from src.application.dtos.create_client_dto import CreateClientDTO
 from src.domain.enums.client_enum import ClientStatus
-
+from src.infra.gateways.pipefy.pipefy_gateway import PipefyGateway
 from src.infra.models.client_model import ClientModel
 from src.infra.repositories.client_repo import ClientRepository
 
-from src.infra.gateways.pipefy.pipefy_gateway import PipefyGateway
 
 class CreateClientUseCase:
   def __init__(self, client_repository: ClientRepository, pipefy_gateway: PipefyGateway):

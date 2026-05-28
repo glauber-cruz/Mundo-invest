@@ -3,8 +3,9 @@ from src.application.dtos.pipefy_card_update_webhook_dto import (
 )
 from src.domain.enums.client_enum import ClientPriority, ClientStatus
 from src.infra.database.uow import UnitOfWork
-from src.infra.models.processed_events_model import ProcessedEventModel
 from src.infra.gateways.pipefy.pipefy_gateway import PipefyGateway
+from src.infra.models.processed_events_model import ProcessedEventModel
+
 
 class ProcessPipefyCardUpdatedWebhookUseCase:
     def __init__(self, uow: UnitOfWork, pipefy_gateway: PipefyGateway):

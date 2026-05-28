@@ -1,5 +1,7 @@
-from src.infra.gateways.pipefy.pipefy_mutations import PipefyMutations
 from os import getenv
+
+from src.infra.gateways.pipefy.pipefy_mutations import PipefyMutations
+
 
 class PipefyGateway:
   def __init__(self): pass

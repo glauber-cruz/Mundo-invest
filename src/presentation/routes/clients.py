@@ -3,12 +3,10 @@ from sqlalchemy.orm import Session
 
 from src.application.dtos.create_client_dto import CreateClientDTO
 from src.application.use_cases.create_client import CreateClientUseCase
-
 from src.infra.database.database import get_db
-from src.infra.repositories.client_repo import ClientRepository
-
-from src.presentation.schemas.clients_schema import CreateClientSchema
 from src.infra.gateways.pipefy.pipefy_gateway import PipefyGateway
+from src.infra.repositories.client_repo import ClientRepository
+from src.presentation.schemas.clients_schema import CreateClientSchema
 
 router = APIRouter(prefix="/clientes", tags=["clientes"])
 
