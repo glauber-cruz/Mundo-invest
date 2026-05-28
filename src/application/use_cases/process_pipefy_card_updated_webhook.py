@@ -13,7 +13,6 @@ class ProcessPipefyCardUpdatedWebhookUseCase:
         self.pipefy_gateway = pipefy_gateway
 
     def execute(self, payload: PipefyCardUpdateWebhookDTO):
-        priority_value = 200_000
 
         with self.uow:
             event_already_processed = self.uow.processed_events.event_already_processed(
