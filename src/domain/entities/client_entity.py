@@ -1,6 +1,8 @@
 from dataclasses import dataclass
 from datetime import datetime
-from src.domain.enums.client_enum import ClientStatus, ClientPriority
+
+from src.domain.enums.client_enum import ClientPriority, ClientStatus
+
 
 @dataclass
 class Client:
@@ -19,4 +21,6 @@ class Client:
 
     def process(self):
         self.status = ClientStatus.PROCESSED
-        self.prioridade = ClientPriority.HIGH if self.is_high_priority() else ClientPriority.NORMAL
+        self.prioridade = (
+            ClientPriority.HIGH if self.is_high_priority() else ClientPriority.NORMAL
+        )

@@ -1,6 +1,7 @@
 from src.domain.entities.client_entity import Client
-from src.domain.enums.client_enum import ClientStatus, ClientPriority
+from src.domain.enums.client_enum import ClientPriority, ClientStatus
 from src.infra.models.client_model import ClientModel
+
 
 def to_domain(model: ClientModel) -> Client:
     return Client(
@@ -14,6 +15,7 @@ def to_domain(model: ClientModel) -> Client:
         created_at=model.created_at,
         updated_at=model.updated_at,
     )
+
 
 def to_model(domain: Client) -> ClientModel:
     return ClientModel(
