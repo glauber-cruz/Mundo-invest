@@ -10,14 +10,14 @@ from src.presentation.schemas.clients_schema import CreateClientSchema
 
 router = APIRouter(prefix="/clientes", tags=["clientes"])
 
+
 @router.post("/", status_code=201)
 def create_client(payload: CreateClientSchema, db: Session = Depends(get_db)):
     client_repository = ClientRepository(db)
     pipefy_gateway = PipefyGateway()
 
     use_case = CreateClientUseCase(
-        client_repository=client_repository, 
-        pipefy_gateway=pipefy_gateway
+        client_repository=client_repository, pipefy_gateway=pipefy_gateway
     )
 
     payload_dto = CreateClientDTO(

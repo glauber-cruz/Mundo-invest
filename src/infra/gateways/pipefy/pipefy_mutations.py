@@ -1,6 +1,5 @@
 class PipefyMutations:
-    
-    #https://developers.pipefy.com/reference/create-a-card-with-the-required-fields-fulfilled#step-3-create-the-card-graphql-mutation
+    # https://developers.pipefy.com/reference/create-a-card-with-the-required-fields-fulfilled#step-3-create-the-card-graphql-mutation
     CREATE_CARD = """
       mutation CreateCard(
           $pipe_id: ID!,
@@ -54,4 +53,3 @@ class PipefyMutations:
         }
       }
     """
-    

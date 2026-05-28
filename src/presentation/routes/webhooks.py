@@ -29,7 +29,9 @@ def pipefy_card_updated(
         timestamp=payload.timestamp,
     )
 
-    use_case = ProcessPipefyCardUpdatedWebhookUseCase(uow=uow, pipefy_gateway=pipefy_gateway)
+    use_case = ProcessPipefyCardUpdatedWebhookUseCase(
+        uow=uow, pipefy_gateway=pipefy_gateway
+    )
     response = use_case.execute(payload_dto)
 
     return response
