@@ -44,4 +44,10 @@ class ProcessPipefyCardUpdatedWebhookUseCase:
             self.uow.processed_events.create(processed_event)
             self.uow.clients.update(client)
 
+        self.pipefy_gateway.update_card_fields(
+            card_id=payload.card_id,
+            status=client.status,
+            prioridade=client.prioridade,
+        )
+
         return {"status": "success"}

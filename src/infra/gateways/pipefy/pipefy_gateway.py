@@ -19,3 +19,15 @@ class PipefyGateway:
       }
 
       return self._send(mutation, variables)
+
+
+  def update_card_fields(self, card_id, status, prioridade):
+    mutation = PipefyMutations.UPDATE_CARD_FIELDS
+
+    variables = {
+      "card_id": card_id,
+      "status": status,
+      "prioridade": prioridade,
+    }
+
+    return self._send(mutation, variables)
