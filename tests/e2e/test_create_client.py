@@ -1,7 +1,7 @@
 from src.infra.models.client_model import ClientModel
 
 
-def test_should_create_client(api, db_session, faker):
+def test_should_create_client(client, db_session, faker):
     email = faker.email()
 
     payload = {
@@ -11,7 +11,7 @@ def test_should_create_client(api, db_session, faker):
         "valor_patrimonio": 250000,
     }
 
-    response = api.post("/clientes/", json=payload)
+    response = client.post("/clientes/", json=payload)
 
     assert response.status_code == 201
     assert response.json()["message"] == "Client created successfully"
@@ -24,7 +24,7 @@ def test_should_create_client(api, db_session, faker):
     assert db_client.status == "Aguardando Análise"
 
 
-def test_should_fail_with_invalid_email(api, faker):
+def test_should_fail_with_invalid_email(client, faker):
     payload = {
         "cliente_nome": faker.name(),
         "cliente_email": "invalid-email",
@@ -32,12 +32,12 @@ def test_should_fail_with_invalid_email(api, faker):
         "valor_patrimonio": 100000,
     }
 
-    response = api.post("/clientes/", json=payload)
+    response = client.post("/clientes/", json=payload)
 
     assert response.status_code == 422
 
 
-def test_should_not_allow_duplicate_email(api, db_session, faker):
+def test_should_not_allow_duplicate_email(client, db_session, faker):
     email = faker.email()
 
     payload = {
@@ -47,8 +47,8 @@ def test_should_not_allow_duplicate_email(api, db_session, faker):
         "valor_patrimonio": 250000,
     }
 
-    api.post("/clientes/", json=payload)
-    response = api.post("/clientes/", json=payload)
+    client.post("/clientes/", json=payload)
+    response = client.post("/clientes/", json=payload)
 
     assert response.status_code == 409
     assert response.json()["detail"] == "Email already exists"
