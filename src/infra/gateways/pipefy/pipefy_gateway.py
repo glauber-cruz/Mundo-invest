@@ -1,0 +1,20 @@
+from src.infra.gateways.pipefy.pipefy_mutations import PipefyMutations
+from os import getenv
+
+class PipefyGateway:
+  def __init__(self): pass
+
+  def _send(self, mutation, variables): pass
+
+  def create_card(self, cliente_nome, cliente_email, valor_patrimonio, tipo_solicitacao):
+      mutation = PipefyMutations.CREATE_CARD
+
+      variables = {
+          "pipe_id": int(getenv("PIPE_ID")),
+          "cliente_nome": cliente_nome,
+          "cliente_email": cliente_email,
+          "valor_patrimonio": valor_patrimonio,
+          "tipo_solicitacao": tipo_solicitacao,
+      }
+
+      return self._send(mutation, variables)
