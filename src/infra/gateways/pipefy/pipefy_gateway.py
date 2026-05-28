@@ -6,7 +6,7 @@ class PipefyGateway:
 
   def _send(self, mutation, variables): pass
 
-  def create_card(self, cliente_nome, cliente_email, valor_patrimonio, tipo_solicitacao):
+  def create_card(self, cliente_nome, cliente_email, valor_patrimonio, tipo_solicitacao, status):
       mutation = PipefyMutations.CREATE_CARD
 
       variables = {
@@ -15,6 +15,7 @@ class PipefyGateway:
           "cliente_email": cliente_email,
           "valor_patrimonio": valor_patrimonio,
           "tipo_solicitacao": tipo_solicitacao,
+          "status": status,
       }
 
       return self._send(mutation, variables)

@@ -36,4 +36,5 @@ class CreateClientUseCase:
         cliente_email=payload.cliente_email,
         valor_patrimonio=payload.valor_patrimonio,
         tipo_solicitacao=payload.tipo_solicitacao,
+        status=ClientStatus.WAITING_ANALYSIS,
     )

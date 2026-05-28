@@ -10,6 +10,7 @@ from src.application.use_cases.process_pipefy_card_updated_webhook import (
 from src.infra.database.database import get_db
 from src.infra.database.uow import UnitOfWork
 from src.presentation.schemas.webhooks_schema import PipefyCardUpdatedSchema
+from src.infra.gateways.pipefy.pipefy_gateway import PipefyGateway
 
 router = APIRouter(prefix="/webhooks", tags=["webhooks"])
 
@@ -19,6 +20,7 @@ def pipefy_card_updated(
     payload: PipefyCardUpdatedSchema, db: Session = Depends(get_db)
 ):
     uow = UnitOfWork(db)
+    pipefy_gateway = PipefyGateway()
 
     payload_dto = PipefyCardUpdateWebhookDTO(
         event_id=payload.event_id,
@@ -27,7 +29,7 @@ def pipefy_card_updated(
         timestamp=payload.timestamp,
     )
 
-    use_case = ProcessPipefyCardUpdatedWebhookUseCase(uow=uow)
-
+    use_case = ProcessPipefyCardUpdatedWebhookUseCase(uow=uow, pipefy_gateway=pipefy_gateway)
     response = use_case.execute(payload_dto)
+
     return response
